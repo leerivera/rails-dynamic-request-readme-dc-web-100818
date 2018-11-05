@@ -45,7 +45,7 @@ Rails.application.routes.draw do
   #     post 'toggle'
   #   end
   #   resources :posts, concerns: :toggleable
-  #   resources :photos, concerns: :toggleable
+  #   resources :photos, concerns: :togglsseable
 
   # Example resource route within a namespace:
   #   namespace :admin do
@@ -53,4 +53,6 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
+  get 'posts', to: "post#show"
+  get 'posts', to: "post#index"
 end

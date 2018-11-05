@@ -16,6 +16,7 @@
 # users commonly want.
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
+require 'rails_helper'
 RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest
@@ -89,4 +90,21 @@ RSpec.configure do |config|
   # as the one that triggered the failure.
   Kernel.srand config.seed
 =end
+
+ 
+describe 'navigate' do
+  before do
+    @post = Post.create(title: "My Post", description: "My post desc")
+  end
+ 
+  it 'loads the show page' do
+    visit "/posts/#{@post.id}"
+    expect(page.status_code).to eq(200)
+  end
+ 
+  it 'shows the title on the show page in an h1 tag' do
+    visit "/posts/#{@post.id}"
+    expect(page).to have_css("h1", text: "My Post")
+  end
+end
 end
